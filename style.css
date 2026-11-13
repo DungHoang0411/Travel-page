@@ -1,6 +1,6 @@
 /* ========================================================
    Travlla - Vietnam Landing Page Stylesheet
-   Full-Viewport Responsive Layout (100% Proportional to 1895x982)
+   Proportional 1:1 Layout Matched to Reference Image 1
    ======================================================== */
 
 :root {
@@ -8,7 +8,6 @@
   --primary-green-hover: #9be922;
   --text-white: #ffffff;
   --text-dark: #000000;
-  --orange-dot: #f5a623;
   --font-main: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -30,15 +29,12 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Full-Viewport Web Container (Zero Black Bars, 100% Proportional Mapping) */
+/* Full-Viewport Web Container */
 .page-wrapper {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url('assets/bg-clean.jpg');
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #0b130e;
   overflow: hidden;
 }
 
@@ -57,29 +53,152 @@ html, body {
 .bg-video {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   display: block;
 }
 
+/* Lớp phủ tối trực tiếp lên video nền (đã làm nhạt đi vừa phải) */
+.video-bg-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(3, 10, 7, 0.18);
+  pointer-events: none;
+}
+
+/* Dark Rounded Inner Frame & Left Vignette Overlay (Reference Image 1 - Nhạt dịu tự nhiên) */
+.hero-frame-overlay {
+  position: absolute;
+  left: 1.758%;
+  right: 1.758%;
+  top: 3.549%;
+  bottom: 4.593%;
+  border-radius: 1.6vw;
+  background: 
+    linear-gradient(
+      180deg,
+      rgba(2, 8, 5, 0.48) 0%,
+      rgba(2, 8, 5, 0.10) 22%,
+      rgba(2, 8, 5, 0.10) 75%,
+      rgba(2, 8, 5, 0.48) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(2, 8, 5, 0.64) 0%,
+      rgba(2, 8, 5, 0.38) 36%,
+      rgba(2, 8, 5, 0.12) 65%,
+      rgba(2, 8, 5, 0.38) 100%
+    );
+  box-shadow: 0 0 0 4vw rgba(3, 8, 5, 0.22), inset 0 0 35px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Light Rain Effect Canvas */
+.hero-rain-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Right Concentric Radar Circles & Dots */
+.hero-radar-circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.radar-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Upper-Right White Dot on Middle Orbit Arc (961, 138 on 1024x479) */
+.orbit-dot-white {
+  position: absolute;
+  left: 93.848%;
+  top: 28.810%;
+  width: 0.62vw;
+  height: 0.62vw;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Lower-Right Green Dot on Orbit Arc (893, 341 on 1024x479) */
+.location-dot {
+  position: absolute;
+  left: 87.207%;
+  top: 71.190%;
+  width: 0.68vw;
+  height: 0.68vw;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.dot-core {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--primary-green);
+  box-shadow: 0 0 8px rgba(136, 210, 1, 0.9);
+}
+
+.dot-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(136, 210, 1, 0.38);
+  animation: dotPulse 2.2s infinite ease-out;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
 /* ========================================================
-   1. SITE HEADER (Proportional to 1895 x 982)
+   1. SITE HEADER (Matched to Reference Image 1: 1024x479)
    ======================================================== */
 .site-header {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 16.293%; /* 160 / 982 */
+  height: 16%;
   z-index: 100;
 }
 
-/* Brand Logo (96, 77, 188x82 on 1895x982) */
+/* Brand Logo (39, 29, 75x34 on 1024x479) */
 .brand-logo {
   position: absolute;
-  left: 5.066%;   /* 96 / 1895 */
-  top: 48.125%;   /* 77 / 160 */
-  width: 9.921%;  /* 188 / 1895 */
-  height: 51.25%; /* 82 / 160 */
+  left: 3.809%;
+  top: 37.838%;   /* 6.054% of viewport height */
+  width: 7.324%;
+  height: 44.362%; /* 7.098% of viewport height */
   display: block;
   text-decoration: none;
   transition: transform 0.25s ease, filter 0.25s ease;
@@ -93,16 +212,38 @@ html, body {
 .logo-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   display: block;
 }
 
-/* Center Navigation Menu (x: 486..1192 = 706px, y: 108 on 1895x982) */
+/* Decorative Circle with Dot near Logo (177, 40, 21x21 on 1024x479) */
+.header-deco-circle {
+  position: absolute;
+  left: 17.285%;
+  top: 52.192%;
+  width: 2.05vw;
+  height: 2.05vw;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.deco-center-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Center Navigation Menu (305..631, y=42 on 1024x479) */
 .main-nav {
   position: absolute;
-  left: 25.646%;  /* 486 / 1895 */
-  top: 66.875%;   /* 107 / 160 */
-  width: 37.256%; /* 706 / 1895 */
+  left: 29.785%;
+  top: 54.802%;
+  width: 31.836%;
 }
 
 .nav-list {
@@ -120,10 +261,10 @@ html, body {
 .nav-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.42vw;
+  gap: 0.36vw;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.96vw;
+  font-size: 0.83vw;
   font-weight: 500;
   letter-spacing: 0.01vw;
   padding: 0.2vw 0;
@@ -137,40 +278,40 @@ html, body {
 }
 
 .chevron-icon {
-  width: 0.5vw;
-  height: 0.32vw;
+  width: 0.44vw;
+  height: 0.28vw;
   stroke: currentColor;
+  opacity: 0.85;
   transition: transform 0.25s ease;
 }
 
-.has-dropdown:hover .chevron-icon {
+.has-dropdown:hover .chevron-icon,
+.has-dropdown.open .chevron-icon {
   transform: rotate(180deg);
 }
 
 /* Dropdown Menus */
 .dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: -0.8vw;
-  min-width: 10vw;
+  top: calc(100% + 0.4vw);
+  left: -0.6vw;
+  min-width: 9.5vw;
   background: rgba(14, 25, 20, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.55vw;
-  padding: 0.55vw 0;
+  border-radius: 0.5vw;
+  padding: 0.45vw 0;
   list-style: none;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
   z-index: 200;
 }
 
-.has-dropdown:hover .dropdown-menu,
 .has-dropdown.open .dropdown-menu,
-.dropdown-trigger:hover .dropdown-menu,
 .dropdown-trigger.open .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -179,10 +320,10 @@ html, body {
 
 .dropdown-menu li a {
   display: block;
-  padding: 0.5vw 1.05vw;
+  padding: 0.45vw 0.95vw;
   color: #e0e0e0;
   text-decoration: none;
-  font-size: 0.78vw;
+  font-size: 0.74vw;
   font-weight: 500;
   white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
@@ -192,10 +333,10 @@ html, body {
 .dropdown-menu li a.active {
   background: rgba(136, 210, 1, 0.15);
   color: var(--primary-green);
-  padding-left: 1.25vw;
+  padding-left: 1.15vw;
 }
 
-/* Right Header Utilities (Sliced Icons) */
+/* Right Header Utilities (Sliced Icons matched to Reference Image 1) */
 .header-utilities {
   position: absolute;
   top: 0;
@@ -225,79 +366,69 @@ html, body {
   opacity: 0.9;
 }
 
-/* Language Selector (1380.1, 91.5, 152.9, 54.3) */
+/* Language Selector (824, 40, 54x16 on 1024x479) */
 .lang-selector {
   position: absolute;
-  left: 72.828%;
-  top: 57.188%;
-  width: 8.069%;
-  height: 33.938%;
+  left: 80.469%;
+  top: 51.5%;
+  width: 5.273%;
+  height: 20.877%;
 }
 
 .lang-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   display: block;
 }
 
-/* Currency Selector (1561.1, 100.4, 61, 35.9) */
+/* Currency Selector (890, 42.5, 23x12 on 1024x479) */
 .currency-selector {
   position: absolute;
-  left: 82.380%;
-  top: 62.750%;
-  width: 3.219%;
-  height: 22.438%;
+  left: 86.914%;
+  top: 55.4%;
+  width: 2.246%;
+  height: 15.658%;
 }
 
 .pay-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   display: block;
   filter: brightness(0) invert(1);
 }
 
-/* Vertical Divider (1643, 104, 28) */
-.vertical-divider {
-  position: absolute;
-  left: 86.702%;
-  top: 65.000%;
-  width: 1px;
-  height: 17.500%;
-  background: rgba(255, 255, 255, 0.28);
-}
-
-/* Search Icon (1667.9, 98.4, 36.8, 48.4) */
+/* Search Icon (931, 41, 13x14 on 1024x479) */
 .search-trigger {
   position: absolute;
-  left: 88.016%;
-  top: 61.500%;
-  width: 1.942%;
-  height: 30.250%;
+  left: 90.918%;
+  top: 53.5%;
+  width: 1.270%;
+  height: 18.267%;
 }
 
 .search-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   display: block;
   filter: brightness(0) invert(1);
 }
 
-/* Hamburger Menu Icon (1741, 96.6, 61.3, 52.4) */
+/* Hamburger Menu Icon (964, 41, 17x14 on 1024x479) */
 .menu-trigger {
   position: absolute;
-  left: 91.873%;
-  top: 60.375%;
-  width: 3.235%;
-  height: 32.750%;
+  left: 94.141%;
+  top: 53.5%;
+  width: 1.660%;
+  height: 18.267%;
 }
 
 .menu-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   display: block;
   filter: brightness(0) invert(1);
 }
@@ -315,21 +446,31 @@ html, body {
 }
 
 .hero-container a,
-.hero-container button,
-.hero-container .location-dot {
+.hero-container button {
   pointer-events: auto;
 }
 
-/* Drifting Mist Cloud (955, 188, 330x274 on 1895x982) */
+/* Two Fast-Drifting Mist Clouds (Reference Image 1) */
 .hero-cloud-wrap {
   position: absolute;
-  left: 50.396%;   /* 955 / 1895 */
-  top: 19.145%;    /* 188 / 982 */
-  width: 17.414%;  /* 330 / 1895 */
-  height: 27.902%; /* 274 / 982 */
   z-index: 8;
-  animation: cloudDriftHorizontal 4.5s ease-in-out infinite alternate;
   will-change: transform;
+}
+
+.cloud-upper {
+  left: 52.05%;
+  top: 1.04%;
+  width: 11.13%;
+  height: 17.95%;
+  animation: cloudDriftUpper 4.2s ease-in-out infinite alternate;
+}
+
+.cloud-right {
+  left: 81.64%;
+  top: 15.66%;
+  width: 14.16%;
+  height: 22.76%;
+  animation: cloudDriftRight 4.8s ease-in-out infinite alternate;
 }
 
 .cloud-img {
@@ -337,28 +478,40 @@ html, body {
   height: 100%;
   object-fit: fill;
   display: block;
-  opacity: 0.95;
+  opacity: 0.94;
 }
 
-@keyframes cloudDriftHorizontal {
+@keyframes cloudDriftUpper {
   0% {
-    transform: translate3d(-8vw, 0, 0);
+    transform: translate3d(-5vw, 0, 0);
   }
   50% {
-    transform: translate3d(0vw, -0.5vh, 0);
+    transform: translate3d(0vw, -0.4vh, 0);
   }
   100% {
-    transform: translate3d(9vw, 0.4vh, 0);
+    transform: translate3d(5.5vw, 0.3vh, 0);
   }
 }
 
-/* Hero Subtitle: Explore (188.9, 297.9, 191.6x84.8 on 1895x982) */
+@keyframes cloudDriftRight {
+  0% {
+    transform: translate3d(-4.5vw, 0.2vh, 0);
+  }
+  50% {
+    transform: translate3d(0vw, -0.3vh, 0);
+  }
+  100% {
+    transform: translate3d(4.5vw, 0, 0);
+  }
+}
+
+/* Hero Subtitle: Explore (80, 122, 73x30 on 1024x479) */
 .hero-explore-wrap {
   position: absolute;
-  left: 9.968%;
-  top: 30.336%;
-  width: 10.111%;
-  height: 8.635%;
+  left: 7.813%;
+  top: 25.470%;
+  width: 7.129%;
+  height: 6.263%;
   z-index: 10;
 }
 
@@ -369,14 +522,46 @@ html, body {
   display: block;
 }
 
-/* Hero Destination Title: Vietnam (165, 449, 991x274 on 1895x982) */
-.hero-title-wrap {
+/* Hero Destination Title: Vietnam (70, 173, 408x119 on 1024x479) */
+/* Layer 1: Solid White "Vietnam" BEHIND Foreground Rock */
+.hero-title-solid {
   position: absolute;
-  left: 8.707%;
-  top: 45.723%;
-  width: 52.296%;
-  height: 27.902%;
-  z-index: 15;
+  left: 6.836%;
+  top: 36.117%;
+  width: 39.844%;
+  height: 24.843%;
+  z-index: 14;
+  will-change: transform;
+}
+
+/* Layer 2: Foreground Mossy Rock (78, 232, 290x247 on 1024x479) */
+.hero-rock-wrap {
+  position: absolute;
+  left: 7.617%;
+  top: 48.434%;
+  width: 28.320%;
+  height: 51.566%;
+  z-index: 16;
+  pointer-events: none;
+}
+
+.rock-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Layer 3: Thin White Outline "Vietnam" IN FRONT OF Foreground Rock */
+.hero-title-outline {
+  position: absolute;
+  left: 7.129%;
+  top: 36.326%;
+  width: 39.844%;
+  height: 24.843%;
+  z-index: 17;
   will-change: transform;
 }
 
@@ -393,23 +578,23 @@ html, body {
 
 @keyframes vietnamFloatMove {
   0% {
-    transform: translate3d(-0.6vw, -0.4vh, 0) scale(1);
+    transform: translate3d(-0.45vw, -0.3vh, 0) scale(1);
   }
   50% {
-    transform: translate3d(0.4vw, 0.5vh, 0) scale(1.012);
+    transform: translate3d(0.35vw, 0.35vh, 0) scale(1.008);
   }
   100% {
-    transform: translate3d(0.8vw, -0.3vh, 0) scale(1);
+    transform: translate3d(0.55vw, -0.25vh, 0) scale(1);
   }
 }
 
-/* Monarch Butterfly with 3D Wing Flapping (1070, 434, 119x115 on 1895x982) */
+/* Monarch Butterfly with 3D Wing Flapping (433, 166, 60x47 on 1024x479) */
 .hero-butterfly-wrap {
   position: absolute;
-  left: 56.464%;
-  top: 44.196%;
-  width: 6.280%;
-  height: 11.711%;
+  left: 42.285%;
+  top: 34.656%;
+  width: 5.859%;
+  height: 9.812%;
   z-index: 25;
   pointer-events: auto;
   cursor: pointer;
@@ -437,7 +622,6 @@ html, body {
   -webkit-user-drag: none;
 }
 
-/* Left Wing flaps around center body axis (50% X) */
 .wing-left {
   clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
   transform-origin: 50% 50%;
@@ -445,12 +629,10 @@ html, body {
   will-change: transform;
 }
 
-/* Center Body stays stable */
 .butterfly-body {
   clip-path: polygon(45% 0, 55% 0, 55% 100%, 45% 100%);
 }
 
-/* Right Wing flaps symmetrically around center body axis (50% X) */
 .wing-right {
   clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
   transform-origin: 50% 50%;
@@ -458,7 +640,6 @@ html, body {
   will-change: transform;
 }
 
-/* Speed up flapping on hover */
 .hero-butterfly-wrap:hover .wing-left,
 .hero-butterfly-wrap:hover .wing-right {
   animation-duration: 0.28s;
@@ -487,17 +668,17 @@ html, body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-0.6vh);
+    transform: translateY(-0.5vh);
   }
 }
 
-/* Chameleon on branch (0, 745, 318x237 on 1895x982) */
+/* Full Chameleon on branch with curled tail (0, 333, 135x146 on 1024x479) */
 .hero-chameleon-wrap {
   position: absolute;
   left: 0;
-  top: 75.866%;
-  width: 16.781%;
-  height: 24.134%;
+  top: 69.520%;
+  width: 13.184%;
+  height: 30.480%;
   z-index: 30;
   pointer-events: auto;
   cursor: pointer;
@@ -515,13 +696,13 @@ html, body {
   display: block;
 }
 
-/* Chameleon / Frog Automatic Moving Eye (center 118, 41, size 28x28 on 318x237) */
+/* Chameleon / Frog Automatic Moving Eye (62, 46, 28x28 on 257x270) */
 .chameleon-eye-socket {
   position: absolute;
-  left: 32.704%;   /* 104 / 318 */
-  top: 11.392%;    /* 27 / 237 */
-  width: 8.805%;   /* 28 / 318 */
-  height: 11.814%; /* 28 / 237 */
+  left: 24.125%;   /* 62 / 257 */
+  top: 17.037%;    /* 46 / 270 */
+  width: 10.895%;  /* 28 / 257 */
+  height: 10.370%; /* 28 / 270 */
   border-radius: 50%;
   overflow: hidden;
   pointer-events: none;
@@ -543,15 +724,12 @@ html, body {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
   22%, 38% {
-    /* Roll eye up-right toward butterfly */
     transform: translate3d(18%, -15%, 0) rotate(45deg);
   }
   50%, 66% {
-    /* Roll eye down-left toward branch */
     transform: translate3d(-18%, 14%, 0) rotate(-42deg);
   }
   78%, 90% {
-    /* Roll eye up-left */
     transform: translate3d(-12%, -14%, 0) rotate(-25deg);
   }
   100% {
@@ -559,83 +737,42 @@ html, body {
   }
 }
 
-/* Glowing Orange Location Marker (center at 1313, 446, 14x14 on 1895x982) */
-.location-dot {
-  position: absolute;
-  left: 69.288%;
-  top: 45.418%;
-  width: 0.739%;
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 20;
-}
-
-.dot-core {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--orange-dot);
-  box-shadow: 0 0 8px rgba(245, 166, 35, 0.85);
-}
-
-.dot-pulse {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: rgba(245, 166, 35, 0.35);
-  animation: dotPulse 2.2s infinite ease-out;
-}
-
-@keyframes dotPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  100% {
-    transform: scale(3);
-    opacity: 0;
-  }
-}
-
 /* ========================================================
-   3. CALL TO ACTION SECTION (Bottom Center-Right)
+   3. CALL TO ACTION SECTION (406, 313 on 1024x479)
    ======================================================== */
 .hero-cta-wrap {
   position: absolute;
-  left: 52.982%;
-  top: 78.004%;
+  left: 39.648%;
+  top: 65.344%;
   z-index: 35;
 }
 
 .cta-subtitle {
   color: #ffffff;
-  font-size: 1.11vw;
+  font-size: 0.90vw;
   font-weight: 500;
-  line-height: 1.78;
+  line-height: 1.64;
   letter-spacing: -0.01vw;
-  margin-bottom: 1.42vw;
+  margin-bottom: 1.05vw;
   white-space: nowrap;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .btn-get-in-touch {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 10.660vw;
-  height: 7.128vh;
-  margin-left: 3.325vw;
+  width: 8.105vw;
+  height: 6.054vh;
+  margin-left: 2.539vw;
   background: var(--primary-green);
   color: var(--text-dark);
   text-decoration: none;
-  font-size: 0.95vw;
+  font-size: 0.78vw;
   font-weight: 600;
   letter-spacing: -0.01vw;
   border-radius: 9999px;
-  box-shadow: 0 8px 24px rgba(136, 210, 1, 0.3);
+  box-shadow: 0 6px 20px rgba(136, 210, 1, 0.32);
   transition: all 0.25s ease;
   cursor: pointer;
   user-select: none;
@@ -644,11 +781,69 @@ html, body {
 .btn-get-in-touch:hover {
   background: var(--primary-green-hover);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(136, 210, 1, 0.45);
+  box-shadow: 0 10px 26px rgba(136, 210, 1, 0.45);
 }
 
 /* ========================================================
-   4. MODALS & DRAWERS (Search & Mobile Navigation)
+   4. BOTTOM-RIGHT SOCIAL FOLLOW BAR (591, 436 on 1024x479)
+   ======================================================== */
+.hero-follow-bar {
+  position: absolute;
+  left: 57.715%;
+  bottom: 7.098%;
+  display: flex;
+  align-items: center;
+  gap: 1.05vw;
+  z-index: 35;
+}
+
+.follow-label {
+  color: #ffffff;
+  font-size: 0.62vw;
+  font-weight: 600;
+  letter-spacing: 0.14vw;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+
+.follow-line {
+  width: 3.35vw;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  display: inline-block;
+}
+
+.follow-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.95vw;
+}
+
+.social-link {
+  color: #ffffff;
+  width: 1.15vw;
+  height: 1.15vw;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-link svg {
+  width: 100%;
+  height: 100%;
+}
+
+.social-link:hover {
+  color: var(--primary-green);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* ========================================================
+   5. MODALS & DRAWERS (Search & Mobile Navigation)
    ======================================================== */
 .search-modal {
   position: fixed;
@@ -802,15 +997,15 @@ html, body {
 }
 
 .drawer-logo {
-  height: 48px;
-  object-fit: contain;
+  height: 45px;
+  width: auto;
 }
 
 .drawer-close {
   background: none;
   border: none;
   color: #fff;
-  font-size: 36px;
+  font-size: 32px;
   cursor: pointer;
   line-height: 1;
 }
@@ -819,59 +1014,55 @@ html, body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-.drawer-nav li a {
+.drawer-nav a {
   color: #fff;
   text-decoration: none;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.drawer-nav li a:hover,
-.drawer-nav li a.active {
+.drawer-nav a:hover,
+.drawer-nav a.active {
   color: var(--primary-green);
 }
 
 .drawer-footer {
   margin-top: auto;
-  padding-top: 30px;
 }
 
 .drawer-btn {
   width: 100%;
+  height: 48px;
   margin-left: 0;
-  height: 56px;
   font-size: 16px;
 }
 
-/* ========================================================
-   5. JS TOAST NOTIFICATION
-   ======================================================== */
+/* Interactive Toast Notification */
 .js-toast {
   position: fixed;
   bottom: 28px;
-  left: 50%;
-  transform: translate(-50%, 20px);
-  background: rgba(13, 26, 20, 0.94);
-  color: #ffffff;
-  border: 1px solid var(--primary-green);
-  padding: 10px 22px;
-  border-radius: 9999px;
+  right: 28px;
+  background: rgba(13, 26, 20, 0.95);
+  color: #fff;
+  border: 1px solid rgba(136, 210, 1, 0.45);
+  border-left: 4px solid var(--primary-green);
+  padding: 12px 20px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
   z-index: 2000;
+  opacity: 0;
+  transform: translateY(15px);
   pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .js-toast.show {
   opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }

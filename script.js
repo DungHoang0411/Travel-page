@@ -43,6 +43,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // 1b. Light Rain Effect on Canvas (Mưa nhỏ tự nhiên)
+  const rainCanvas = document.getElementById('rainCanvas');
+  if (rainCanvas) {
+    const ctx = rainCanvas.getContext('2d');
+    let width = (rainCanvas.width = window.innerWidth);
+    let height = (rainCanvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = rainCanvas.width = window.innerWidth;
+      height = rainCanvas.height = window.innerHeight;
+    });
+
+    const DROP_COUNT = 65;
+    const drops = Array.from({ length: DROP_COUNT }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      length: 32 + Math.random() * 45,
+      speed: 3.5 + Math.random() * 3.8,
+      opacity: 0.12 + Math.random() * 0.18,
+      thickness: 0.9 + Math.random() * 0.5
+    }));
+
+    function renderRain() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < drops.length; i++) {
+        const d = drops[i];
+
+        const grad = ctx.createLinearGradient(d.x, d.y - d.length, d.x, d.y);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+        grad.addColorStop(0.7, `rgba(255, 255, 255, ${d.opacity * 0.7})`);
+        grad.addColorStop(1, `rgba(255, 255, 255, ${d.opacity})`);
+
+        ctx.beginPath();
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = d.thickness;
+        ctx.lineCap = 'round';
+        ctx.moveTo(d.x, d.y - d.length);
+        ctx.lineTo(d.x, d.y);
+        ctx.stroke();
+
+        d.y += d.speed;
+
+        if (d.y - d.length > height) {
+          d.y = -10;
+          d.x = Math.random() * width;
+        }
+      }
+
+      requestAnimationFrame(renderRain);
+    }
+
+    requestAnimationFrame(renderRain);
+  }
+
   // 2. Toast Notification Helper
   const toast = document.createElement('div');
   toast.className = 'js-toast';

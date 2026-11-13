@@ -18,10 +18,33 @@
   <!-- Main Hero Wrapper -->
   <div class="page-wrapper" id="pageWrapper">
 
+    <!-- Background Video Layer -->
     <div class="video-bg-wrap" aria-hidden="true">
-      <video class="bg-video" id="bgVideo" autoplay muted loop playsinline poster="assets/bg-clean.jpg">
-        <source src="assets/bg-video.mp4?v=2" type="video/mp4">
+      <video class="bg-video" id="bgVideo" src="https://travlla.botble.com/storage/videos/video-1.mp4" autoplay muted loop playsinline>
+        <source src="https://travlla.botble.com/storage/videos/video-1.mp4" type="video/mp4">
       </video>
+    </div>
+
+    <!-- Subtle Dark Inner Frame & Left Shading Overlay (matching Reference Image 1) -->
+    <div class="hero-frame-overlay" aria-hidden="true"></div>
+
+    <!-- Light Rain Effect Canvas -->
+    <canvas id="rainCanvas" class="hero-rain-canvas" aria-hidden="true"></canvas>
+
+    <!-- Right Concentric Radar Circles & Dots -->
+    <div class="hero-radar-circles" aria-hidden="true">
+      <svg class="radar-svg" viewBox="0 0 1024 479" preserveAspectRatio="none">
+        <circle cx="1165" cy="255" r="228" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.9" />
+        <circle cx="1165" cy="255" r="306" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.9" />
+        <circle cx="1165" cy="255" r="388" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="0.9" />
+      </svg>
+      <!-- Upper-Right White Orbit Dot -->
+      <span class="orbit-dot orbit-dot-white"></span>
+      <!-- Lower-Right Green Location Dot -->
+      <div class="location-dot" title="Destination Location">
+        <span class="dot-core"></span>
+        <span class="dot-pulse"></span>
+      </div>
     </div>
 
     <!-- Top Navigation Header -->
@@ -30,6 +53,11 @@
       <a href="#" class="brand-logo" aria-label="Travlla Home">
         <img src="assets/logo.png" alt="Travlla Logo" class="logo-img">
       </a>
+
+      <!-- Decorative Thin Circle with Center Dot near Logo -->
+      <div class="header-deco-circle" aria-hidden="true">
+        <span class="deco-center-dot"></span>
+      </div>
 
       <!-- Center Navigation Menu -->
       <nav class="main-nav" aria-label="Main Navigation">
@@ -128,9 +156,6 @@
           </ul>
         </div>
 
-        <!-- Vertical Divider -->
-        <div class="vertical-divider" role="separator"></div>
-
         <!-- Search Button -->
         <button class="util-img-btn search-trigger" aria-label="Search" title="Search">
           <img src="Icon/Seach.png" alt="Search" class="search-img">
@@ -145,15 +170,14 @@
 
     <!-- Hero Main Section -->
     <main class="hero-container">
-      <!-- Drifting Mist Cloud Layer -->
-      <div class="hero-cloud-wrap" aria-hidden="true">
+      <!-- Drifting Mist Cloud 1 (Upper Center-Right) -->
+      <div class="hero-cloud-wrap cloud-upper" aria-hidden="true">
         <img src="assets/cloud.png" alt="" class="cloud-img">
       </div>
 
-      <!-- Glowing Orange Location Marker -->
-      <div class="location-dot" title="Destination Location">
-        <span class="dot-core"></span>
-        <span class="dot-pulse"></span>
+      <!-- Drifting Mist Cloud 2 (Right Cliffside) -->
+      <div class="hero-cloud-wrap cloud-right" aria-hidden="true">
+        <img src="assets/cloud.png" alt="" class="cloud-img">
       </div>
 
       <!-- Hero Subtitle: Explore -->
@@ -161,12 +185,22 @@
         <img src="Icon/Explore.png" alt="Explore" class="explore-img">
       </div>
 
-      <!-- Hero Destination Title: Vietnam -->
-      <div class="hero-title-wrap">
-        <img src="assets/vietnam-exact.png" alt="Vietnam" class="vietnam-img">
+      <!-- Hero Destination Title: Vietnam (Solid Layer behind Foreground Rock) -->
+      <div class="hero-title-wrap hero-title-solid">
+        <img src="assets/vietnam-solid.png" alt="Vietnam" class="vietnam-img">
       </div>
 
-      <!-- Flapping Monarch Butterfly -->
+      <!-- Foreground Mossy Rock (Layered between Solid Vietnam and Outline Vietnam) -->
+      <div class="hero-rock-wrap" aria-hidden="true">
+        <img src="assets/rock-full.png" alt="" class="rock-img">
+      </div>
+
+      <!-- Hero Destination Title: Vietnam (Outline Layer in front of Foreground Rock) -->
+      <div class="hero-title-wrap hero-title-outline" aria-hidden="true">
+        <img src="assets/vietnam-outline.png" alt="" class="vietnam-img">
+      </div>
+
+      <!-- Flapping Monarch Butterfly (Perched above 'm' of Vietnam) -->
       <div class="hero-butterfly-wrap" title="Monarch Butterfly">
         <div class="butterfly-3d">
           <img src="assets/butterfly.png" alt="" class="butterfly-wing wing-left">
@@ -175,15 +209,15 @@
         </div>
       </div>
 
-      <!-- Lower Left Frog / Chameleon on branch (with automatic moving eye) -->
+      <!-- Lower Left Frog / Chameleon on branch (Full Curled Tail + Automatic Moving Eye) -->
       <div class="hero-chameleon-wrap">
-        <img src="assets/chameleon.png" alt="Green Chameleon on branch" class="chameleon-img">
+        <img src="assets/chameleon-full.png" alt="Green Chameleon on branch" class="chameleon-img">
         <div class="chameleon-eye-socket" aria-hidden="true">
           <img src="assets/chameleon-eye.png" alt="" class="chameleon-eye-img" id="chameleonEye">
         </div>
       </div>
 
-      <!-- Call To Action (Bottom Center-Right) -->
+      <!-- Call To Action (Center over River Rapids) -->
       <div class="hero-cta-wrap">
         <p class="cta-subtitle">
           The Safety of our customers<br>at all stages
@@ -191,6 +225,40 @@
         <a href="#contact" class="btn-get-in-touch" role="button">
           Get In Touch
         </a>
+      </div>
+
+      <!-- Bottom-Right Social Follow Bar -->
+      <div class="hero-follow-bar">
+        <span class="follow-label">FOLLOW US</span>
+        <span class="follow-line" aria-hidden="true"></span>
+        <div class="follow-icons">
+          <a href="#facebook" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#twitter" class="social-link" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z"/>
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/>
+            </svg>
+          </a>
+          <a href="#youtube" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="4"/>
+              <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#linkedin" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="3"/>
+              <line x1="8" y1="11" x2="8" y2="16"/>
+              <line x1="8" y1="8" x2="8" y2="8.01"/>
+              <line x1="12" y1="16" x2="12" y2="11"/>
+              <path d="M16 16v-3a2 2 0 0 0-4 0"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </main>
 
