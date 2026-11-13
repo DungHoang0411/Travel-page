@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travlla - Explore Vietnam</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Kaushan+Script&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main Hero Wrapper -->
+  <div class="page-wrapper" id="pageWrapper">
+
+    <!-- Light Rain Effect Canvas -->
+    <canvas class="rain-canvas" id="rainCanvas" aria-hidden="true"></canvas>
+
+    <!-- Top Navigation Header -->
+    <header class="site-header">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="Travlla Home">
+        <img src="assets/logo.png" alt="Travlla Logo" class="logo-img">
+      </a>
+
+      <!-- Center Navigation Menu -->
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <span>Home</span>
+              <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Home 01 - Default</a></li>
+              <li><a href="#">Home 02 - Adventure</a></li>
+              <li><a href="#">Home 03 - Wildlife</a></li>
+              <li><a href="#">Home 04 - Modern</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <span>Pages</span>
+              <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Pricing Plan</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Destinations</a>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <span>Tours</span>
+              <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Tour Grid</a></li>
+              <li><a href="#">Tour List</a></li>
+              <li><a href="#">Tour Details</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <span>Blogs</span>
+              <svg class="chevron-icon" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Blog Standard</a></li>
+              <li><a href="#">Blog Grid</a></li>
+              <li><a href="#">Blog Single</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Utilities (Sliced Icons) -->
+      <div class="header-utilities">
+        <!-- Language Selector -->
+        <div class="lang-selector dropdown-trigger">
+          <button class="util-img-btn" aria-label="Select Language">
+            <img src="assets/language-white.png" alt="English" class="lang-img">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="active">English (US)</a></li>
+            <li><a href="#">Tiếng Việt (VN)</a></li>
+            <li><a href="#">Français (FR)</a></li>
+          </ul>
+        </div>
+
+        <!-- Currency Selector -->
+        <div class="currency-selector dropdown-trigger">
+          <button class="util-img-btn" aria-label="Select Currency">
+            <img src="Icon/Pay.png" alt="USD" class="pay-img">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="active">USD ($)</a></li>
+            <li><a href="#">VND (₫)</a></li>
+            <li><a href="#">EUR (€)</a></li>
+          </ul>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div class="vertical-divider" role="separator"></div>
+
+        <!-- Search Button -->
+        <button class="util-img-btn search-trigger" aria-label="Search" title="Search">
+          <img src="Icon/Seach.png" alt="Search" class="search-img">
+        </button>
+
+        <!-- Hamburger Menu Button -->
+        <button class="util-img-btn menu-trigger" aria-label="Open Navigation Menu" title="Menu">
+          <img src="Icon/Menu.png" alt="Menu" class="menu-img">
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Main Section -->
+    <main class="hero-container">
+      <!-- Drifting Mist Cloud Layer -->
+      <div class="hero-cloud-wrap" aria-hidden="true">
+        <img src="assets/cloud.png" alt="" class="cloud-img">
+      </div>
+
+      <!-- Glowing Orange Location Marker -->
+      <div class="location-dot" title="Destination Location">
+        <span class="dot-core"></span>
+        <span class="dot-pulse"></span>
+      </div>
+
+      <!-- Hero Subtitle: Explore -->
+      <div class="hero-explore-wrap">
+        <img src="Icon/Explore.png" alt="Explore" class="explore-img">
+      </div>
+
+      <!-- Hero Destination Title: Vietnam -->
+      <div class="hero-title-wrap">
+        <img src="assets/vietnam-exact.png" alt="Vietnam" class="vietnam-img">
+      </div>
+
+      <!-- Flapping Monarch Butterfly -->
+      <div class="hero-butterfly-wrap" title="Monarch Butterfly">
+        <div class="butterfly-3d">
+          <img src="assets/butterfly.png" alt="" class="butterfly-wing wing-left">
+          <img src="assets/butterfly.png" alt="Monarch Butterfly" class="butterfly-body">
+          <img src="assets/butterfly.png" alt="" class="butterfly-wing wing-right">
+        </div>
+      </div>
+
+      <!-- Lower Left Chameleon on branch -->
+      <div class="hero-chameleon-wrap">
+        <img src="assets/chameleon.png" alt="Green Chameleon on branch" class="chameleon-img">
+      </div>
+
+      <!-- Call To Action (Bottom Center-Right) -->
+      <div class="hero-cta-wrap">
+        <p class="cta-subtitle">
+          The Safety of our customers<br>at all stages
+        </p>
+        <a href="#contact" class="btn-get-in-touch" role="button">
+          Get In Touch
+        </a>
+      </div>
+    </main>
+
+    <!-- Search Modal Overlay -->
+    <div class="search-modal" id="searchModal" aria-hidden="true">
+      <div class="search-backdrop"></div>
+      <div class="search-dialog">
+        <button class="search-close" aria-label="Close search">&times;</button>
+        <div class="search-input-wrap">
+          <input type="text" placeholder="Search tours, destinations, activities..." class="search-input" autofocus>
+          <button class="search-submit" aria-label="Submit search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation Menu -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+      <div class="drawer-backdrop"></div>
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <img src="assets/logo.png" alt="Travlla Logo" class="drawer-logo">
+          <button class="drawer-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="drawer-nav">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">Pages</a></li>
+          <li><a href="#">Destinations</a></li>
+          <li><a href="#">Tours</a></li>
+          <li><a href="#">Blogs</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="drawer-footer">
+          <a href="#contact" class="btn-get-in-touch drawer-btn">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

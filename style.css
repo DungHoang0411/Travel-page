@@ -1,0 +1,810 @@
+/* ========================================================
+   Travlla - Vietnam Landing Page Stylesheet
+   Full-Viewport Responsive Layout (100% Proportional to 1895x982)
+   ======================================================== */
+
+:root {
+  --primary-green: #88d201;
+  --primary-green-hover: #9be922;
+  --text-white: #ffffff;
+  --text-dark: #000000;
+  --orange-dot: #f5a623;
+  --font-main: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #0b130e;
+  font-family: var(--font-main);
+  color: var(--text-white);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Full-Viewport Web Container (Zero Black Bars, 100% Proportional Mapping) */
+.page-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('assets/bg-clean.jpg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Light Rain Canvas Overlay */
+.rain-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* ========================================================
+   1. SITE HEADER (Proportional to 1895 x 982)
+   ======================================================== */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 16.293%; /* 160 / 982 */
+  z-index: 100;
+}
+
+/* Brand Logo (96, 77, 188x82 on 1895x982) */
+.brand-logo {
+  position: absolute;
+  left: 5.066%;   /* 96 / 1895 */
+  top: 48.125%;   /* 77 / 160 */
+  width: 9.921%;  /* 188 / 1895 */
+  height: 51.25%; /* 82 / 160 */
+  display: block;
+  text-decoration: none;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 12px rgba(136, 210, 1, 0.4));
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Center Navigation Menu (x: 486..1192 = 706px, y: 108 on 1895x982) */
+.main-nav {
+  position: absolute;
+  left: 25.646%;  /* 486 / 1895 */
+  top: 66.875%;   /* 107 / 160 */
+  width: 37.256%; /* 706 / 1895 */
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42vw;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.96vw;
+  font-weight: 500;
+  letter-spacing: 0.01vw;
+  padding: 0.2vw 0;
+  line-height: 1.1;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-green);
+}
+
+.chevron-icon {
+  width: 0.5vw;
+  height: 0.32vw;
+  stroke: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.has-dropdown:hover .chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menus */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -0.8vw;
+  min-width: 10vw;
+  background: rgba(14, 25, 20, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.55vw;
+  padding: 0.55vw 0;
+  list-style: none;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 200;
+}
+
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown.open .dropdown-menu,
+.dropdown-trigger:hover .dropdown-menu,
+.dropdown-trigger.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5vw 1.05vw;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 0.78vw;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a.active {
+  background: rgba(136, 210, 1, 0.15);
+  color: var(--primary-green);
+  padding-left: 1.25vw;
+}
+
+/* Right Header Utilities (Sliced Icons) */
+.header-utilities {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.header-utilities > * {
+  pointer-events: auto;
+}
+
+.util-img-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.util-img-btn:hover {
+  transform: scale(1.04);
+  opacity: 0.9;
+}
+
+/* Language Selector (1380.1, 91.5, 152.9, 54.3) */
+.lang-selector {
+  position: absolute;
+  left: 72.828%;
+  top: 57.188%;
+  width: 8.069%;
+  height: 33.938%;
+}
+
+.lang-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Currency Selector (1561.1, 100.4, 61, 35.9) */
+.currency-selector {
+  position: absolute;
+  left: 82.380%;
+  top: 62.750%;
+  width: 3.219%;
+  height: 22.438%;
+}
+
+.pay-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Vertical Divider (1643, 104, 28) */
+.vertical-divider {
+  position: absolute;
+  left: 86.702%;
+  top: 65.000%;
+  width: 1px;
+  height: 17.500%;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Search Icon (1667.9, 98.4, 36.8, 48.4) */
+.search-trigger {
+  position: absolute;
+  left: 88.016%;
+  top: 61.500%;
+  width: 1.942%;
+  height: 30.250%;
+}
+
+.search-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Hamburger Menu Icon (1741, 96.6, 61.3, 52.4) */
+.menu-trigger {
+  position: absolute;
+  left: 91.873%;
+  top: 60.375%;
+  width: 3.235%;
+  height: 32.750%;
+}
+
+.menu-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* ========================================================
+   2. HERO SECTION & SLICED VISUAL LAYERS
+   ======================================================== */
+.hero-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-container a,
+.hero-container button,
+.hero-container .location-dot {
+  pointer-events: auto;
+}
+
+/* Drifting Mist Cloud (955, 188, 330x274 on 1895x982) */
+.hero-cloud-wrap {
+  position: absolute;
+  left: 50.396%;   /* 955 / 1895 */
+  top: 19.145%;    /* 188 / 982 */
+  width: 17.414%;  /* 330 / 1895 */
+  height: 27.902%; /* 274 / 982 */
+  z-index: 8;
+  animation: cloudDriftHorizontal 14s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.cloud-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  opacity: 0.95;
+}
+
+@keyframes cloudDriftHorizontal {
+  0% {
+    transform: translate3d(-4.5vw, 0, 0);
+  }
+  50% {
+    transform: translate3d(0vw, -0.4vh, 0);
+  }
+  100% {
+    transform: translate3d(5.5vw, 0.3vh, 0);
+  }
+}
+
+/* Hero Subtitle: Explore (188.9, 297.9, 191.6x84.8 on 1895x982) */
+.hero-explore-wrap {
+  position: absolute;
+  left: 9.968%;
+  top: 30.336%;
+  width: 10.111%;
+  height: 8.635%;
+  z-index: 10;
+}
+
+.explore-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Hero Destination Title: Vietnam (165, 449, 991x274 on 1895x982) */
+.hero-title-wrap {
+  position: absolute;
+  left: 8.707%;
+  top: 45.723%;
+  width: 52.296%;
+  height: 27.902%;
+  z-index: 15;
+}
+
+.vietnam-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Monarch Butterfly with 3D Wing Flapping (1070, 434, 119x115 on 1895x982) */
+.hero-butterfly-wrap {
+  position: absolute;
+  left: 56.464%;
+  top: 44.196%;
+  width: 6.280%;
+  height: 11.711%;
+  z-index: 25;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.butterfly-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 320px;
+  transform-style: preserve-3d;
+  animation: butterflyHover 3.2s ease-in-out infinite;
+}
+
+.butterfly-wing,
+.butterfly-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Left Wing flaps around center body axis (50% X) */
+.wing-left {
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  transform-origin: 50% 50%;
+  animation: flapLeftWing 0.85s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Center Body stays stable */
+.butterfly-body {
+  clip-path: polygon(45% 0, 55% 0, 55% 100%, 45% 100%);
+}
+
+/* Right Wing flaps symmetrically around center body axis (50% X) */
+.wing-right {
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  transform-origin: 50% 50%;
+  animation: flapRightWing 0.85s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Speed up flapping on hover */
+.hero-butterfly-wrap:hover .wing-left,
+.hero-butterfly-wrap:hover .wing-right {
+  animation-duration: 0.28s;
+}
+
+@keyframes flapLeftWing {
+  0% {
+    transform: rotateY(0deg) scaleX(1);
+  }
+  100% {
+    transform: rotateY(62deg) scaleX(0.78);
+  }
+}
+
+@keyframes flapRightWing {
+  0% {
+    transform: rotateY(0deg) scaleX(1);
+  }
+  100% {
+    transform: rotateY(-62deg) scaleX(0.78);
+  }
+}
+
+@keyframes butterflyHover {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.6vh);
+  }
+}
+
+/* Chameleon on branch (0, 745, 318x237 on 1895x982) */
+.hero-chameleon-wrap {
+  position: absolute;
+  left: 0;
+  top: 75.866%;
+  width: 16.781%;
+  height: 24.134%;
+  z-index: 30;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hero-chameleon-wrap:hover {
+  transform: scale(1.02) translateY(-2px);
+}
+
+.chameleon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Glowing Orange Location Marker (center at 1313, 446, 14x14 on 1895x982) */
+.location-dot {
+  position: absolute;
+  left: 69.288%;
+  top: 45.418%;
+  width: 0.739%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 20;
+}
+
+.dot-core {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--orange-dot);
+  box-shadow: 0 0 8px rgba(245, 166, 35, 0.85);
+}
+
+.dot-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(245, 166, 35, 0.35);
+  animation: dotPulse 2.2s infinite ease-out;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ========================================================
+   3. CALL TO ACTION SECTION (Bottom Center-Right)
+   ======================================================== */
+.hero-cta-wrap {
+  position: absolute;
+  left: 52.982%;
+  top: 78.004%;
+  z-index: 35;
+}
+
+.cta-subtitle {
+  color: #ffffff;
+  font-size: 1.11vw;
+  font-weight: 500;
+  line-height: 1.78;
+  letter-spacing: -0.01vw;
+  margin-bottom: 1.42vw;
+  white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.btn-get-in-touch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10.660vw;
+  height: 7.128vh;
+  margin-left: 3.325vw;
+  background: var(--primary-green);
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 0.95vw;
+  font-weight: 600;
+  letter-spacing: -0.01vw;
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px rgba(136, 210, 1, 0.3);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-get-in-touch:hover {
+  background: var(--primary-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(136, 210, 1, 0.45);
+}
+
+/* ========================================================
+   4. MODALS & DRAWERS (Search & Mobile Navigation)
+   ======================================================== */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.search-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(4, 10, 7, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.search-dialog {
+  position: relative;
+  width: 90%;
+  max-width: 650px;
+  z-index: 1001;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.search-modal.active .search-dialog {
+  transform: translateY(0);
+}
+
+.search-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 38px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 8px 14px 8px 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 19px;
+  font-family: var(--font-main);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-submit {
+  width: 48px;
+  height: 48px;
+  background: var(--primary-green);
+  border: none;
+  border-radius: 50%;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.search-submit:hover {
+  transform: scale(1.08);
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-drawer.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  background: #0d1a14;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-drawer.active .drawer-panel {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.drawer-logo {
+  height: 48px;
+  object-fit: contain;
+}
+
+.drawer-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.drawer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.drawer-nav li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.drawer-nav li a:hover,
+.drawer-nav li a.active {
+  color: var(--primary-green);
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding-top: 30px;
+}
+
+.drawer-btn {
+  width: 100%;
+  margin-left: 0;
+  height: 56px;
+  font-size: 16px;
+}
+
+/* ========================================================
+   5. JS TOAST NOTIFICATION
+   ======================================================== */
+.js-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: rgba(13, 26, 20, 0.94);
+  color: #ffffff;
+  border: 1px solid var(--primary-green);
+  padding: 10px 22px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.js-toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
