@@ -1,13 +1,13 @@
 /**
  * Travlla - Main JavaScript Controller
  * Features:
- * 1. Light Rain Effect (Canvas 60fps matching Travlla original vertical rain streaks)
- * 2. Horizontal Drifting Cloud & 3D Flapping Butterfly
+ * 1. HTML5 Background Video autoplay handler (no Canvas)
+ * 2. Automatic Frog/Chameleon Eye Movement, Drifting Cloud, Flapping Butterfly, Floating "Vietnam"
  * 3. Search Modal (#search URL hash support), Side Drawer, and Dropdowns
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const rainCanvas = document.getElementById('rainCanvas');
+  const bgVideo = document.getElementById('bgVideo');
   const searchModal = document.getElementById('searchModal');
   const searchTrigger = document.querySelector('.search-trigger');
   const searchClose = document.querySelector('.search-close');
@@ -25,58 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const locationDot = document.querySelector('.location-dot');
   const ctaBtn = document.querySelector('.btn-get-in-touch');
 
-  // 1. Light Rain Effect on Canvas (Vertical translucent streaks with subtle droplet tip)
-  if (rainCanvas) {
-    const ctx = rainCanvas.getContext('2d');
-    let width = (rainCanvas.width = window.innerWidth);
-    let height = (rainCanvas.height = window.innerHeight);
-
-    window.addEventListener('resize', () => {
-      width = rainCanvas.width = window.innerWidth;
-      height = rainCanvas.height = window.innerHeight;
-    });
-
-    const DROP_COUNT = 55;
-    const drops = Array.from({ length: DROP_COUNT }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      length: 45 + Math.random() * 55,
-      speed: 2.2 + Math.random() * 2.8,
-      opacity: 0.12 + Math.random() * 0.2,
-      thickness: 1 + Math.random() * 0.8
-    }));
-
-    function renderRain() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < drops.length; i++) {
-        const d = drops[i];
-
-        const grad = ctx.createLinearGradient(d.x, d.y - d.length, d.x, d.y);
-        grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
-        grad.addColorStop(0.7, `rgba(255, 255, 255, ${d.opacity * 0.7})`);
-        grad.addColorStop(1, `rgba(255, 255, 255, ${d.opacity})`);
-
-        ctx.beginPath();
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = d.thickness;
-        ctx.lineCap = 'round';
-        ctx.moveTo(d.x, d.y - d.length);
-        ctx.lineTo(d.x, d.y);
-        ctx.stroke();
-
-        // Update position
-        d.y += d.speed;
-        if (d.y - d.length > height) {
-          d.y = -10;
-          d.x = Math.random() * width;
-        }
-      }
-
-      requestAnimationFrame(renderRain);
+  // 1. Ensure Background Video Autoplays Smoothly
+  if (bgVideo) {
+    bgVideo.muted = true;
+    const playPromise = bgVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback: start video on first user interaction if browser blocks autoplay
+        document.addEventListener(
+          'click',
+          () => {
+            bgVideo.play().catch(() => {});
+          },
+          { once: true }
+        );
+      });
     }
-
-    requestAnimationFrame(renderRain);
   }
 
   // 2. Toast Notification Helper
@@ -94,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2400);
   }
 
-  // 3. Search Modal Handlers (also supports #search hash like travlla.botble.com/#search)
+  // 3. Search Modal Handlers (supports #search hash like travlla.botble.com/#search)
   function openSearch() {
     if (!searchModal) return;
     searchModal.classList.add('active');

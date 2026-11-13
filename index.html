@@ -18,8 +18,11 @@
   <!-- Main Hero Wrapper -->
   <div class="page-wrapper" id="pageWrapper">
 
-    <!-- Light Rain Effect Canvas -->
-    <canvas class="rain-canvas" id="rainCanvas" aria-hidden="true"></canvas>
+    <div class="video-bg-wrap" aria-hidden="true">
+      <video class="bg-video" id="bgVideo" autoplay muted loop playsinline poster="assets/bg-clean.jpg">
+        <source src="assets/bg-video.mp4?v=2" type="video/mp4">
+      </video>
+    </div>
 
     <!-- Top Navigation Header -->
     <header class="site-header">
@@ -172,9 +175,12 @@
         </div>
       </div>
 
-      <!-- Lower Left Chameleon on branch -->
+      <!-- Lower Left Frog / Chameleon on branch (with automatic moving eye) -->
       <div class="hero-chameleon-wrap">
         <img src="assets/chameleon.png" alt="Green Chameleon on branch" class="chameleon-img">
+        <div class="chameleon-eye-socket" aria-hidden="true">
+          <img src="assets/chameleon-eye.png" alt="" class="chameleon-eye-img" id="chameleonEye">
+        </div>
       </div>
 
       <!-- Call To Action (Bottom Center-Right) -->
